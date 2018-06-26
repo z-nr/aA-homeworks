@@ -73,7 +73,7 @@ class Simon
     @sequence_length = 1
     @game_over = false
   end
-  
+
   def clear
     system('clear')
   end
