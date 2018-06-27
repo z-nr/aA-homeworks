@@ -37,8 +37,18 @@ describe Dessert do
 
   describe "#mix!" do
     it "shuffles the ingredient array" do
+
+      dessert.add_ingredient("flour")
+      dessert.add_ingredient("sugar")
+      dessert.add_ingredient("butter")
+
+
       expect(dessert.ingredients).to receive(:shuffle!)
       dessert.mix!
+
+      expect(dessert.ingredients.sort).to eq(["flour", "sugar", "butter"].sort)
+
+
     end
   end
 
@@ -56,8 +66,8 @@ describe Dessert do
 
   describe "#serve" do
     it "contains the titleized version of the chef's name" do
-      expect(chef).to receive(:titleize)
-      dessert.serve
+      expect(chef).to receive(:titleize).and_return("Cake Baker")
+      expect(dessert.serve).to eq("Cake Baker has made 4 cakes!")
     end
   end
 
