@@ -1,20 +1,45 @@
-  class LRUCache
-    def initialize
-    end
+# LRUCache Class Document
+class LRUCache
+  attr_reader size
 
-    def count
-      # returns number of elements currently in cache
-    end
-
-    def add(el)
-      # adds element to cache according to LRU principle
-    end
-
-    def show
-      # shows the items in the cache, with the LRU item first
-    end
-
-    private
-    # helper methods go here!
-
+  def initialize(size)
+    @size = size
+    @cache = []
   end
+
+  def count
+    @cache.length
+  end
+
+  def add(element)
+    return update element if existing? element
+
+    make_space if full?
+    @cache << element
+  end
+
+  def show
+    p @cache
+    nil
+  end
+
+  private
+
+  def update(element)
+    @cache.delete(element)
+    @cache << element
+    element
+  end
+
+  def make_space
+    @cache.shift
+  end
+
+  def existing?(element)
+    @cache.include? element
+  end
+
+  def full?
+    count == size
+  end
+end
