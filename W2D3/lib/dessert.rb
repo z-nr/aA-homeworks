@@ -25,7 +25,7 @@ class Dessert
   end
 
   def eat(amount)
-    raise "not enough left!" if @quantity - amount < 0
+    raise 'not enough left!' if @quantity - amount < 0
     @quantity -= amount
   end
 

@@ -31,7 +31,7 @@ end
 
 # O(n) -- keeps track of longest fish
 def clever_octopus(fish_array)
-  longest_fish = nil
+  longest_fish = fish_array.first
   fish_array.each do |fish|
     longest_fish = fish if fish.length > longest_fish.length
   end
@@ -39,13 +39,31 @@ def clever_octopus(fish_array)
 end
 
 # Dancing Octopus
-# tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
-# tiles_hash = tiles_array.zip((0..7).to_a).to_h
 
 def slow_dance(dir, tiles)
   tiles.index(dir)
 end
 
-def constant_dance(dir, tiles)
+def fast_dance(dir, tiles)
   tiles[dir]
 end
+
+
+# Cheap Testing
+fish = [
+  'fish', 'fiiish', 'fiiiiish', 'fiiiish',
+  'fffish', 'ffiiiiisshh', 'fsh', 'fiiiissshhhhhh']
+
+p sluggish_octopus(fish) == fish.last
+p dominant_octopus(fish) == fish.last
+p clever_octopus(fish) == fish.last
+
+tiles = ["up", "right-up", "right", "right-down",
+  "down", "left-down", "left",  "left-up" ]
+
+tiles_hash = tiles.zip((0..7).to_a).to_h
+
+p slow_dance("up", tiles) == 0
+p slow_dance("right-down", tiles) == 3
+p fast_dance("up", tiles_hash) == 0
+p fast_dance("right-down", tiles_hash) == 3

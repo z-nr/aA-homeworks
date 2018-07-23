@@ -20,6 +20,12 @@ class Route < ApplicationRecord
   end
 
   def better_drivers_query
-    # TODO: your code here
+    bus_drivers = Hash.new { |h, k| h[k] = [] }
+    buses
+      .joins(:drivers)
+      .pluck('buses.id, drivers.name')
+      .each { |pair| bus_drivers[pair.first] << pair.last }
+
+    bus_drivers
   end
 end

@@ -1,25 +1,5 @@
-# == Schema Information
-#
-# Table name: actors
-#
-#  id          :integer      not null, primary key
-#  name        :string
-#
-# Table name: movies
-#
-#  id          :integer      not null, primary key
-#  title       :string
-#  yr          :integer
-#  score       :float
-#  votes       :integer
-#  director_id :integer
-#
-# Table name: castings
-#  id          :integer      not null, primary key
-#  movie_id    :integer      not null
-#  actor_id    :integer      not null
-#  ord         :integer
-
+# Download Active Record Warmup skeleton
+# Place this file in skeleton/movie_novice/
 
 def find_angelina
   # find Angelina Jolie by name in the actors table
@@ -32,16 +12,13 @@ def top_titles
   Movie
     .select(:id, :title)
     .where('movies.score >= 9')
-
 end
 
 def star_wars
   # display the id, title and year of each Star Wars movie in movies.
   # hint: use 'select' and 'where'
   Movie.select(:id, :title, :yr).where("title LIKE '%Star Wars%'")
-
 end
-
 
 def below_average_years
   # display each year with movies scoring under 5,
